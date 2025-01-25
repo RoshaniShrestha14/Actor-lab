@@ -21,15 +21,19 @@ app.get("/actor/list", (req, res)=>{
 });
 //add actor
 app.post("/actor/add", (req, res) => {
+  const newActor = req.body;
 
-    const newActor=req.body;// extract bew actor from the request of the body 
-    // const newActor={
-    //     id: 3,
-    //     name:"Tony khan",
-    // };
-    actorList.push(newActor);// push new actor to the actor list 
-  return res.status(201).send({ message: "Actor is added successfully."});
+  // Simple validation: Check if id and name are provided
+  if (!newActor.id || !newActor.name) {
+    return res
+      .status(400)
+      .send({ message: "Please provide both 'id' and 'name'." });
+  }
+
+  actorList.push(newActor);
+  return res.status(201).send({ message: "Actor added successfully." });
 });
+
 
 //Update actor
 app.put("/actor/update", (req, res) => {
