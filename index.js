@@ -134,31 +134,31 @@ app.put("/actor/update/:id", (req, res) => {
   return res.status(200).send({ message: "Actor updated successfully." });
 });
 
-// // Get actor by ID
-// app.get("/actor/detail/:id", (req, res) => {
-//   const actorId = Number(req.params.id);
-//   const actorDetail = actorList.find((actor) => actor.id === actorId);
+// Get actor by ID
+app.get("/actor/detail/:id", (req, res) => {
+  const actorId = Number(req.params.id);
+  const actorDetail = actorList.find((actor) => actor.id === actorId);
 
-//   if (!actorDetail) {
-//     return res.status(404).send({ message: "Actor does not exist." });
-//   } else {
-//     return res.status(200).send({ message: "Success", actorData: actorDetail });
-//   }
-// });
+  if (!actorDetail) {
+    return res.status(404).send({ message: "Actor does not exist." });
+  } else {
+    return res.status(200).send({ message: "Success", actorData: actorDetail });
+  }
+});
 
-// // Delete an actor by ID
-// app.delete("/actor/delete/:id", (req, res) => {
-//   const actorId = Number(req.params.id);
+// Delete an actor by ID
+app.delete("/actor/delete/:id", (req, res) => {
+  const actorId = Number(req.params.id);
 
-//   const actorIndex = actorList.findIndex((actor) => actor.id === actorId);
+  const actorIndex = actorList.findIndex((actor) => actor.id === actorId);
 
-//   if (actorIndex === -1) {
-//     return res.status(404).send({ message: "Actor not found." });
-//   }
+  if (actorIndex === -1) {
+    return res.status(404).send({ message: "Actor not found." });
+  }
 
-//   actorList.splice(actorIndex, 1);
-//   return res.status(200).send({ message: "Actor deleted successfully." });
-// });
+  actorList.splice(actorIndex, 1);
+  return res.status(200).send({ message: "Actor deleted successfully." });
+});
 
 // Filter actors by name substring
 app.get("/actor/filter", (req, res) => {
